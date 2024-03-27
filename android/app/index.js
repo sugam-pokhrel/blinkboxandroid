@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, ScrollView,Text, View, Image, TouchableOpacity, Modal, Alert } from 'react-native';
+import { StyleSheet, Image,ScrollView,Text, View, TouchableOpacity, Modal, Alert } from 'react-native';
 
 import { Stack, useRouter } from "expo-router";
 import Sourab from '../compo/Sourab.js'
@@ -27,7 +27,30 @@ export default function App() {
           headerTitle: "", // You can leave it empty if you don't want a title
         }}
       />
-      <Sourab />
+      <ScrollView>
+      <View style={styles.flex}>
+
+
+
+      <Image style={styles.image} source = {require('../assets/icon.png')} />
+      <Image style={styles.image} source = {require('../assets/icon.png')} />
+      <Image style={styles.image} source = {require('../assets/icon.png')} />
+      <Image style={styles.image} source = {require('../assets/icon.png')} />
+      
+      <Image style={styles.image} source = {require('../assets/icon.png')} />
+      <Image style={styles.image} source = {require('../assets/icon.png')} />
+      
+      
+
+      </View>
+      </ScrollView>
+
+
+   
+
+
+
+      {/* <Sourab /> */}
 
 
  
@@ -36,6 +59,31 @@ export default function App() {
               }
 
 const styles = StyleSheet.create({
+
+  flex:{
+    display:'flex',
+    columnGap:"8px",
+    flexWrap:"wrap",
+    
+    rowGap:"8px",
+    
+    justifyContent:'center',
+    flexDirection:'row'
+    ,
+
+
+
+  } , 
+
+  image:{
+    
+
+    width:"165px",
+    height:"165px",
+    borderRadius:"16px",
+    marginTop:"10px"
+
+  },
   container: {
     flex: 1,
     backgroundColor: '#fff',
