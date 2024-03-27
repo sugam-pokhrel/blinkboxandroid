@@ -1,142 +1,80 @@
-import { StatusBar } from 'expo-status-bar';
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, Image,ScrollView,Text, View, TouchableOpacity, Modal, Alert } from 'react-native';
-
-import { Stack, useRouter } from "expo-router";
-import Sourab from '../compo/Sourab.js'
+import React, { useState } from 'react';
+import { StyleSheet, Image, ScrollView, Text, View, TouchableOpacity, Modal, Alert } from 'react-native';
 
 export default function App() {
- 
+  const [modalVisible, setModalVisible] = useState(false); // State to manage modal visibility
+  const [modalImage, setModalImage] = useState(""); // State to hold image URL for modal
+
+  // Function to toggle modal visibility and set image URL
+  const toggleModal = (imageURL) => {
+    setModalImage(imageURL);
+    console.log(imageURL)
+    setModalVisible(!modalVisible);
+  };
+
   return (
     <View style={styles.container}>
-      <Stack.Screen
-        // Make sure to add a name prop to Stack.Screen
-        options={{
-          headerLeft: () => (
-            <View style={{display:'flex',flexDirection:"row",alignItems:"center",gap:5}}>
-         
-            <Text style={{fontSize:16,fontStyle:"italic"}}>BlinkBox</Text>
-            </View>
-          ),
-          headerRight: () => (
-
-            <>
-            </>
-  
-          ),
-          headerTitle: "", // You can leave it empty if you don't want a title
-        }}
-      />
       <ScrollView>
-      <View style={styles.flex}>
+        <View style={styles.flex}>
+          {/* Wrap images with TouchableOpacity and attach onPress event */}
+          <TouchableOpacity onPress={() => toggleModal(require('../assets/icon.png'))}>
+            <Image style={styles.image} source={require('../assets/icon.png')} />
+          </TouchableOpacity>
 
-
-
-      <Image style={styles.image} source = {require('../assets/icon.png')} />
-      <Image style={styles.image} source = {require('../assets/icon.png')} />
-      <Image style={styles.image} source = {require('../assets/icon.png')} />
-      <Image style={styles.image} source = {require('../assets/icon.png')} />
-      
-      <Image style={styles.image} source = {require('../assets/icon.png')} />
-      <Image style={styles.image} source = {require('../assets/icon.png')} />
-      <Image
-      style={styles.image}
-      
-        source={{
-          uri: "https://encrypted-tbn2.gstatic.com/licensed-image?q=tbn:ANd9GcSNDQldXx8b-bDyGiykxKsIDYvWXtvZ7SQPurW_xDG1nYoBQgCXhLJ-FGTU6MrbFkt0zmpRJUoRiCvNKsI"
-        }}
-      />
-      <Image
-      style={styles.image}
-      
-        source={{
-          uri: "https://encrypted-tbn2.gstatic.com/licensed-image?q=tbn:ANd9GcSNDQldXx8b-bDyGiykxKsIDYvWXtvZ7SQPurW_xDG1nYoBQgCXhLJ-FGTU6MrbFkt0zmpRJUoRiCvNKsI"
-        }}
-      />
-      
-
-      </View>
+          <TouchableOpacity onPress={() => toggleModal("https://encrypted-tbn2.gstatic.com/licensed-image?q=tbn:ANd9GcSNDQldXx8b-bDyGiykxKsIDYvWXtvZ7SQPurW_xDG1nYoBQgCXhLJ-FGTU6MrbFkt0zmpRJUoRiCvNKsI")}>
+          <Image       style={styles.image}                source={{           uri: "https://encrypted-tbn2.gstatic.com/licensed-image?q=tbn:ANd9GcSNDQldXx8b-bDyGiykxKsIDYvWXtvZ7SQPurW_xDG1nYoBQgCXhLJ-FGTU6MrbFkt0zmpRJUoRiCvNKsI"         }}       />
+          {/* Add more images wrapped with TouchableOpacity here */}
+          </TouchableOpacity>
+        </View>
       </ScrollView>
 
-
-   
-
-
-
-      {/* <Sourab /> */}
-
-
- 
+      {/* Modal */}
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          Alert.alert("Modal has been closed.");
+          setModalVisible(!modalVisible);
+        }}
+      >
+        <View style={styles.modalContainer}>
+          <View style={styles.modalContent}>
+            {/* Display image from modalImage state */}
+            <Image style={styles.modalImage} source={modalImage ? { uri: modalImage } : null} />
+            {/* Add more modal content here */}
+            <View style={styles.modalButtons}>
+              <TouchableOpacity style={styles.cancelButton} onPress={() => toggleModal("")}>
+                <Text style={styles.buttonText}>Close</Text>
+              </TouchableOpacity>
+              {/* Add your confirm button or additional buttons here */}
+            </View>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
-              }
+}
 
 const styles = StyleSheet.create({
-
-  flex:{
-    display:'flex',
-    columnGap:"8px",
-    flexWrap:"wrap",
-    
-    rowGap:"8px",
-    
-    justifyContent:'center',
-    flexDirection:'row'
-    ,
-
-
-
-  } , 
-
-  image:{
-    
-
-    width:"165px",
-    height:"165px",
-    borderRadius:"16px",
-    marginTop:"10px"
-
+  flex: {
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    gap: 8,
+    marginTop: 10,
+  },
+  image: {
+    width: 165,
+    height: 165,
+    borderRadius: 16,
   },
   container: {
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  addButton: {
-    marginRight: 15,
-    paddingHorizontal: 15,
-    paddingVertical: 10,
-    backgroundColor: '#007bff',
-    borderRadius: 50, // Make it circular
-  },
-  addButtonText: {
-    color: '#fff',
-    fontSize: 24,
-    fontWeight: 'bold',
-  },
-  noticeContainer: {
-    borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 10,
-    padding: 10,
-    marginVertical: 10,
-    alignItems: 'center', // Center content horizontally
-  },
-  noticeImage: {
-    width: '100%', // Make image fill container width
-    height: 100, // Adjust height as needed
-    marginVertical: 10,
-  },
-  deleteButton: {
-    backgroundColor: 'red',
-    borderRadius: 5,
-    padding: 5,
-    marginTop: 5,
-    alignItems: 'center',
-  },
-  deleteButtonText: {
-    color: '#fff',
   },
   modalContainer: {
     flex: 1,
@@ -150,7 +88,9 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     alignItems: 'center',
   },
-  modalText: {
+  modalImage: {
+    width: 300,
+    height: 300,
     marginBottom: 20,
   },
   modalButtons: {
@@ -162,16 +102,7 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 5,
   },
-  confirmButton: {
-    backgroundColor: 'red',
-    padding: 10,
-    borderRadius: 5,
-  },
   buttonText: {
     color: '#fff',
   },
-  navStyle:{
-    
-
-  }
 });
