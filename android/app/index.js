@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, ScrollView,Text, View, Image, TouchableOpacity, Modal, Alert } from 'react-native';
 
 import { Stack, useRouter } from "expo-router";
-
+import Sourab from '../compo/Sourab.js'
 
 export default function App() {
  
@@ -15,7 +15,7 @@ export default function App() {
           headerLeft: () => (
             <View style={{display:'flex',flexDirection:"row",alignItems:"center",gap:5}}>
          
-            <Text style={{fontSize:16,fontStyle:"italic"}}>Golden Future Education Foundation</Text>
+            <Text style={{fontSize:16,fontStyle:"italic"}}>BlinkBox</Text>
             </View>
           ),
           headerRight: () => (
@@ -27,6 +27,7 @@ export default function App() {
           headerTitle: "", // You can leave it empty if you don't want a title
         }}
       />
+      <Sourab />
 
 
  
