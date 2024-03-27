@@ -39,6 +39,13 @@ export default function App() {
       
       <Image style={styles.image} source = {require('../assets/icon.png')} />
       <Image style={styles.image} source = {require('../assets/icon.png')} />
+      <Image
+      style={styles.image}
+      
+        source={{
+          uri: "https://encrypted-tbn2.gstatic.com/licensed-image?q=tbn:ANd9GcSNDQldXx8b-bDyGiykxKsIDYvWXtvZ7SQPurW_xDG1nYoBQgCXhLJ-FGTU6MrbFkt0zmpRJUoRiCvNKsI"
+        }}
+      />
       
       
 
