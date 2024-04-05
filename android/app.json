@@ -2,7 +2,9 @@
   "expo": {
     "name": "android",
     "slug": "android",
+    
     "version": "1.0.0",
+    "scheme":"goldenfuture",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
