@@ -14,7 +14,9 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-    <Link href="/upload">About</Link>      <ScrollView>
+    <Text><Link href="/upload">About</Link>  </Text> 
+    
+    <ScrollView>
         <View style={styles.flex}>
           {/* Wrap images with TouchableOpacity and attach onPress event */}
           <TouchableOpacity onPress={() => toggleModal(require('../assets/icon.png'))}>
