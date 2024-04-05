@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, Image, ScrollView, Text, View, TouchableOpacity, Modal, Alert } from 'react-native';
-
+import { Link } from 'expo-router';
 export default function App() {
   const [modalVisible, setModalVisible] = useState(false); // State to manage modal visibility
   const [modalImage, setModalImage] = useState(""); // State to hold image URL for modal
@@ -14,7 +14,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <ScrollView>
+    <Link href="/upload">About</Link>      <ScrollView>
         <View style={styles.flex}>
           {/* Wrap images with TouchableOpacity and attach onPress event */}
           <TouchableOpacity onPress={() => toggleModal(require('../assets/icon.png'))}>
